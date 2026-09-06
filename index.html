@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Voice Chat</title>
+<link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<main class="panel">
+  <header class="panel-header">
+    <span class="dial"></span>
+    <h1>My Voice Chat</h1>
+  </header>
+
+  <!-- ขั้นที่ 0: เลือกโหมด -->
+  <section class="step" id="step-mode">
+    <h2>เลือกวิธีเล่น</h2>
+    <div class="choice-row">
+      <button class="choice" data-mode="world">โลกส่วนตัว</button>
+      <button class="choice" data-mode="server">เซิร์ฟเวอร์</button>
+    </div>
+
+    <div class="field-group hidden" id="server-fields">
+      <label>IP เซิร์ฟเวอร์<input type="text" id="server-ip" placeholder="เช่น play.example.net" /></label>
+      <label>พอร์ต<input type="text" id="server-port" placeholder="เช่น 19132" /></label>
+    </div>
+
+    <button class="primary" id="mode-next" disabled>ถัดไป</button>
+  </section>
+
+  <!-- ขั้นที่ 1: กรอกรหัส 6 หลัก -->
+  <section class="step hidden" id="step-code">
+    <h2>กรอกรหัสยืนยันจากในเกม</h2>
+    <p class="hint">พิมพ์ <code>/connect ws://โดเมนของคุณ/mc</code> ในแชทเกมก่อน แล้วนำรหัส 6 หลักที่ขึ้นในแชทมากรอกที่นี่</p>
+    <input class="code-input" id="code-input" inputmode="numeric" maxlength="6" placeholder="000000" />
+    <p class="error hidden" id="code-error"></p>
+    <button class="primary" id="code-next">ถัดไป</button>
+  </section>
+
+  <!-- ขั้นที่ 2: ชื่อผู้เล่น -->
+  <section class="step hidden" id="step-name">
+    <h2>ชื่อผู้เล่นของคุณ</h2>
+    <p class="hint">ต้องตรงกับ Gamertag / ชื่อผู้เล่นในเกมเป๊ะ ๆ</p>
+    <input class="text-input" id="name-input" placeholder="ชื่อผู้เล่น" />
+    <button class="primary" id="name-next">เชื่อมต่อ</button>
+  </section>
+
+  <!-- ขั้นที่ 3: หน้าตั้งค่าไมค์ -->
+  <section class="step hidden" id="step-settings">
+    <div class="connected-row">
+      <span class="status-dot"></span>
+      <span id="connected-name">-</span>
+    </div>
+
+    <div class="mic-meter">
+      <div class="mic-meter-fill" id="mic-meter-fill"></div>
+    </div>
+
+    <button class="mute-btn" id="mute-btn">
+      <span id="mute-label">ไมค์เปิดอยู่</span>
+    </button>
+
+    <div class="sliders">
+      <label>ระดับเสียงที่ได้ยิน
+        <input type="range" id="hear-volume" min="0" max="100" value="100" />
+      </label>
+      <label>ระดับเสียงที่พูด
+        <input type="range" id="speak-volume" min="0" max="100" value="100" />
+      </label>
+      <label>ระยะที่ได้ยินคนอื่น (บล็อก)
+        <input type="range" id="hear-distance" min="1" max="64" value="16" />
+      </label>
+      <label>ระยะที่คนอื่นได้ยินเรา (บล็อก)
+        <input type="range" id="speak-distance" min="1" max="64" value="16" />
+      </label>
+    </div>
+
+    <button class="secondary" id="disconnect-btn">ตัดการเชื่อมต่อ</button>
+  </section>
+</main>
+
+<!-- bubble แจ้งเตือนเมื่อหลุดการเชื่อมต่อ -->
+<div class="bubble hidden" id="disconnect-bubble">
+  <p>การเชื่อมต่อกับเกมสิ้นสุดลง</p>
+  <p class="hint">อาจเกิดจากปิดเกม ลบโลก หรือถอด add-on ออก กรุณาเริ่มเชื่อมต่อใหม่</p>
+  <button class="primary" id="bubble-restart">เริ่มใหม่</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>

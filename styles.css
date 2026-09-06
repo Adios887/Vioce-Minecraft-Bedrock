@@ -1,0 +1,263 @@
+:root {
+  --bg: #171513;
+  --surface: #221f1c;
+  --surface-2: #2b2723;
+  --border: #3a3530;
+  --text: #ece7de;
+  --text-muted: #948d81;
+  --accent: #c97a3d;
+  --accent-dim: #7a4d29;
+  --success: #6fae73;
+  --danger: #c1594f;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "IBM Plex Sans", system-ui, sans-serif;
+  padding: 24px;
+}
+
+.panel {
+  width: 100%;
+  max-width: 380px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.dial {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex-shrink: 0;
+}
+
+.panel-header h1 {
+  font-size: 18px;
+  font-weight: 500;
+  margin: 0;
+}
+
+h2 {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 0 0 12px;
+}
+
+.hint {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+.hint code {
+  font-family: "IBM Plex Mono", monospace;
+  background: var(--surface-2);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: var(--accent);
+}
+
+.hidden { display: none !important; }
+
+.choice-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.choice {
+  flex: 1;
+  padding: 14px 8px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.choice.selected {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.field-group label {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+input[type="text"], .text-input, .code-input {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-size: 15px;
+  outline: none;
+}
+
+.code-input {
+  font-family: "IBM Plex Mono", monospace;
+  font-size: 28px;
+  letter-spacing: 8px;
+  text-align: center;
+  padding: 16px 14px;
+}
+
+.code-input:focus, .text-input:focus, input[type="text"]:focus {
+  border-color: var(--accent);
+}
+
+.error {
+  font-size: 13px;
+  color: var(--danger);
+  margin: 10px 0 0;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.primary {
+  width: 100%;
+  padding: 13px;
+  margin-top: 16px;
+  background: var(--accent);
+  color: #1c1108;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.primary:disabled {
+  background: var(--accent-dim);
+  cursor: not-allowed;
+}
+
+.secondary {
+  width: 100%;
+  padding: 13px;
+  margin-top: 18px;
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 14px;
+}
+
+.connected-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.status-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--success);
+}
+
+.mic-meter {
+  height: 8px;
+  background: var(--surface-2);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.mic-meter-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--accent);
+  transition: width 60ms linear;
+}
+
+.mute-btn {
+  width: 100%;
+  padding: 16px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--success);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.mute-btn.muted {
+  color: var(--danger);
+  border-color: var(--danger);
+}
+
+.sliders {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.sliders label {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+input[type="range"] {
+  accent-color: var(--accent);
+}
+
+.bubble {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 320px;
+  background: var(--surface);
+  border: 1px solid var(--danger);
+  border-radius: 14px;
+  padding: 18px;
+  text-align: center;
+}
+
+.bubble p {
+  margin: 0 0 8px;
+  font-size: 14px;
+}
+
+.bubble .hint { margin-bottom: 12px; }
